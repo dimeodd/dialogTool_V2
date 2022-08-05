@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/dropdown.css">
+
+    <script src="js/Data/ItemsList.js"></script>
+    <script src="js/Data/CharList.js"></script>
+    <script src="js/Data/TaskList.js"></script>
+
+    <script src="js/ext/Dropdown.js"></script>
+    <script src="js/structs.js"></script>
+    <script src="js/ElementFactory.js"></script>
+    <script src="js/workspace.js"></script>
+    <script src="js/multiQuests.js"></script>
+
+    <script src="js/main.js"></script>
+
+    <title>Quest tool</title>
+</head>
+
+<body>
+    <div id="workspace">
+
+    </div>
+    <div id="questList">
+
+    </div>
+    <div id="header" class="ui_style">
+        <div class="dropdown">
+            <button onclick="DropdownExt.ShowDropDown()" class="dropbtn">Файл</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a onclick="SaveAll()">Сохранить</a>
+                <a onclick="LoadAll()">Загрузить</a>
+                <a onclick="ExpotrToUE4()">Экспортировать (3 файла подряд!)</a>
+                <!-- <a>About</a>
+                <a>Contact</a> -->
+            </div>
+        </div>
+        <button onclick="ws.Redraw()">Redraw</button>
+        <button onclick="mq.NewQuest()">New Quest</button>
+        <button onclick="mq.SortByID()">Sort Quests</button>
+    </div>
+</body>
+
+</html>

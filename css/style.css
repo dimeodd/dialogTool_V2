@@ -1,0 +1,113 @@
+#header {
+    position: fixed;
+    width: 100%;
+
+    top: 0px;
+    left: 80px;
+    padding: 5px;
+}
+
+#workspace {
+    position: absolute;
+    top: 40px;
+    left: 100px;
+}
+
+#questList {
+    position: fixed;
+    top: 00px;
+    left: 0px;
+    width: 80px;
+    height: 100%;
+    background-color: rgb(197, 193, 159);
+    overflow-y: scroll;
+}
+
+#questList div {
+    padding-left: 10px;
+    width: 50px;
+}
+
+.selected {
+    background-color: rgb(226, 142, 31);
+}
+
+.questListElement1 {
+    background-color: rgb(254, 248, 192);
+}
+
+.questListElement2 {
+    background-color: rgb(254, 232, 192);
+}
+
+
+#questList div:hover {
+    background-color: rgb(223, 210, 101);
+}
+
+#questList div:active {
+    background-color: rgb(182, 169, 55);
+}
+
+#placeholder {
+    position: absolute;
+    top: 40px;
+    left: 700px;
+
+}
+
+.ui_style {
+    background: #FEDFC0;
+    border-bottom: 2px solid #7B5427;
+}
+
+.number {
+    width: 55px;
+    text-align: right;
+}
+
+.number_time {
+    width: 30px;
+    text-align: right;
+}
+
+.red {
+    background: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.list1 {
+    background: beige;
+}
+
+.list2 {
+    background: antiquewhite;
+}
+
+.clnBtn {
+    text-align: left;
+    padding: 0px;
+    width: 25px;
+}
+
+h3 {
+    margin-bottom: 0px;
+    background-color: antiquewhite;
+}
+
+h5 {
+    margin: 0px;
+}
+
+
+label {
+    display: block;
+    float: left;
+    width: 150px;
+    height: 15px;
+}
+
+ul, li {
+    display: inline;
+    padding-left: 0px;
+}
