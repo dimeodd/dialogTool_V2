@@ -29,6 +29,12 @@ class multiQuests {
 
 
         this.Redraw();
+
+        /*
+        //TODO внедрить сохранение в localstorage, чтобы предотвратить перезагрузки
+        кнопка удаления текущего квеста
+        кнопка нового файла
+        */
     }
 
     UpdateTextKeys() {
@@ -52,7 +58,6 @@ class multiQuests {
     }
 
     Redraw() {
-
         this.owner.innerHTML = '';
         var i = 0;
         this.arr.forEach(quest => {

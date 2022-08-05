@@ -177,9 +177,9 @@ var reward_list = [
     { name: 'item', uName: 'предмет', params: [tl.ItemID, tl.Count] },
     { name: 'fish', uName: 'рыба', params: [tl.FishID, tl.Count, tl.FishType] },
 
-    { name: 'sale_item_buy', uName: 'цена на покупку товары', params: [tl.ItemID, tl.Percent, tl.Time] },
-    { name: 'sale_item_sell', uName: 'цена на продажу товары', params: [tl.ItemID, tl.Percent, tl.Time] },
-    { name: 'sale_fish_buy', uName: 'цена на покупку рыбы', params: [tl.FishID, tl.Percent, tl.Time] },
-    { name: 'sale_fish_sell', uName: 'цена на продажу рыбы', params: [tl.FishID, tl.Percent, tl.Time] },
+    { name: 'sale_item_buy', uName: 'цена на покупку товары', params: [tl.Percent, tl.Time] },
+    { name: 'sale_item_sell', uName: 'цена на продажу товары', params: [tl.Percent, tl.Time] },
+    { name: 'sale_fish_buy', uName: 'цена на покупку рыбы', params: [tl.Percent, tl.Time] },
+    { name: 'sale_fish_sell', uName: 'цена на продажу рыбы', params: [tl.Percent, tl.Time] },
     { name: 'productivity', uName: 'глобальный КПД', params: [tl.Percent, tl.Time] }
 ];
