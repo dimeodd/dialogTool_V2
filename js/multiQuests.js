@@ -56,22 +56,55 @@ class multiQuests {
         this.owner.innerHTML = '';
         var i = 0;
         this.arr.forEach(quest => {
-            this.Element(quest, i);
+            this.CreateElement(quest, i);
             i++;
         });
     }
-    Element(quest, index) {
-        if (mq.charFilter !== 'none') {
-            if (quest.data.QuestGiver_UE4 != mq.charFilter) return;
-        }
+    CreateElement(quest, index) {
+        if (mq.charFilter !== 'none' &&
+            mq.charFilter !== quest.data.QuestGiver_UE4) return;
+
+        var delBtn = document.createElement('button');
+        delBtn.innerText = 'X';
+        delBtn.style.width = '15px';
+        delBtn.style.padding = '0px';
+        delBtn.addEventListener(
+            'click',
+            function () {
+                if (!confirm("Хотите удалить?")) return;
+                if (mq.arr.length < 2) {
+                    mq.arr[index] = new QuestData();
+                }
+                else
+                    mq.arr.splice(index, 1);
+
+                if (mq.index >= mq.arr.length) mq.index = mq.arr.length - 1;
+                ws.SetData(mq.arr[mq.index]);
+                ws.Redraw();
+                mq.Redraw();
+            },
+            { once: true, capture: true });
 
         var div = document.createElement('div');
         div.innerText = quest.data.QuestID;
-        div.onclick = function (e) {
-            mq.index = index;
-            ws.SetData(quest);
-            ws.Redraw();
-            mq.Redraw();
+        div.addEventListener(
+            'click',
+            function () {
+                mq.index = index;
+                ws.SetData(quest);
+                ws.Redraw();
+                mq.Redraw();
+            },
+            true);
+
+        div.onpointerenter = function () {
+            div.insertBefore(delBtn, div.firstChild);
+            div.style.paddingLeft = 0;
+            div.style.width = '100%';
+        }
+        div.onpointerleave = function () {
+            delBtn.remove();
+            div.removeAttribute('style');
         }
         if (index == this.index) div.classList.add('selected');
         else if (index % 2) div.classList.add('questListElement2');
@@ -94,7 +127,9 @@ class multiQuests {
 
 
     SortByID() {
+        var select = this.arr[this.index];
         this.arr.sort(compare);
+        this.index = this.arr.indexOf(select);
         this.Redraw();
 
         function compare(a, b) {
@@ -119,7 +154,6 @@ class multiQuests {
             return 0;
         }
     }
-
 
     SetData(data) {
         this.arr = data.arr;
