@@ -121,6 +121,6 @@ function ExpotrToUE4() {
     download('en.txt', txt_arr[1].a, 'text/txt');
 
     function f(text) {
-        return "\"" + text + "\""
+        return JSON.stringify(text)
     }
 }
