@@ -54,6 +54,10 @@ class Workspace {
         this.owner.appendChild(ElementFactory.FlagList(ws.data.StartValues.Flags_arr));
         this.owner.appendChild(ElementFactory.SmallLabel('flag - если флаг есть'));
         this.owner.appendChild(ElementFactory.SmallLabel('!flag - если флага нет'));
+        
+        this.owner.appendChild(ElementFactory.HeaderLabel('Задания'));
+        this.owner.appendChild(ElementFactory.TasksOrder());
+        this.owner.appendChild(ElementFactory.TaskList(ws.data.Tasks_arr, task_list, 'tasks1'));
 
         this.owner.appendChild(ElementFactory.HeaderLabel('Условия провала'));
         this.owner.appendChild(ElementFactory.EndTimer());
@@ -62,9 +66,6 @@ class Workspace {
         this.owner.appendChild(ElementFactory.SmallLabel('flag - если флаг есть, то провал'));
         this.owner.appendChild(ElementFactory.SmallLabel('!flag - если флага нет, то провал'));
 
-        this.owner.appendChild(ElementFactory.HeaderLabel('Задания'));
-        this.owner.appendChild(ElementFactory.TasksOrder());
-        this.owner.appendChild(ElementFactory.TaskList(ws.data.Tasks_arr, task_list, 'tasks1'));
 
         this.owner.appendChild(ElementFactory.HeaderLabel('On Skip'));
         this.owner.appendChild(ElementFactory.TextField(ws.text.skip, 'Диалог пропуска:'));

@@ -5,13 +5,8 @@ class ElementFactory {
         input.value = ws.data.QuestID;
         input.type = 'text';
         input.oninput = function (event) {
-            if (input.value.length > 0) {
-                input.value = input.value.toUpperCase();
-                input.value = input.value[0].replace(/^[^А-Я]/, '') + input.value.replace(/[^\d]/gm, '');
-
-                if (input.value.length > 5) {
-                    input.value = input.value.substr(0, 5);
-                }
+            if (input.value.length > 5) {
+                input.value = input.value.substr(0, 5);
             }
         };
         input.onchange = function (event) {
@@ -25,9 +20,13 @@ class ElementFactory {
         label.innerText = 'Quest ID';
         label.htmlFor = input.id;
 
+        var text = document.createElement('a');
+        text.innerText = ' (5 символов)';
+
         var div = document.createElement('div');
         div.appendChild(label);
         div.appendChild(input);
+        div.appendChild(text);
         return div;
     }
 
@@ -36,15 +35,6 @@ class ElementFactory {
         select.id = 'questgiver'
         select.value = ws.data.QuestGiver_UE4;
         select.onchange = function (event) {
-
-            //Это квест Константина?
-            var isPlan = event.target.value == char_list[4];
-            var checker = document.getElementById('autotake');
-            checker.disabled = isPlan;
-            if (isPlan) {
-                checker.checked = ws.data.IsAutoTake_bool = true;
-            }
-
             ws.data.QuestGiver_UE4 = event.currentTarget.value;
         };
 
@@ -59,17 +49,13 @@ class ElementFactory {
     }
 
     static AutoTaker() {
-        //Это квест Константина?
-        var isPlan = document.getElementById('questgiver').value == char_list[4];
-
         var checker = document.createElement('input');
         checker.id = 'autotake';
         checker.type = 'checkbox';
-        checker.checked = isPlan | ws.data.IsAutoTake_bool;
+        checker.checked = ws.data.IsAutoTake_bool;
         checker.onchange = function (event) {
-            ws.data.IsAutoTake_bool = isPlan | event.target.checked;
+            ws.data.IsAutoTake_bool = event.target.checked;
         };
-        checker.disabled = isPlan;
 
         var label = document.createElement('label');
         label.innerText = 'Авто-принятие';

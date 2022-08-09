@@ -139,6 +139,16 @@ class tl {
         td.appendChild(select);
         return td;
     }
+
+    static Flag(onChengeFunc) {
+        var input = document.createElement('input');
+        input.onchange = onChengeFunc;
+
+        var td = document.createElement('td');
+        td.innerText = 'Флаг:'
+        td.appendChild(input);
+        return td;
+    }
 }
 
 var task_list = [
@@ -181,5 +191,6 @@ var reward_list = [
     { name: 'sale_item_sell', uName: 'цена на продажу товары', params: [tl.Percent, tl.Time] },
     { name: 'sale_fish_buy', uName: 'цена на покупку рыбы', params: [tl.Percent, tl.Time] },
     { name: 'sale_fish_sell', uName: 'цена на продажу рыбы', params: [tl.Percent, tl.Time] },
-    { name: 'productivity', uName: 'глобальный КПД', params: [tl.Percent, tl.Time] }
+    { name: 'productivity', uName: 'глобальный КПД', params: [tl.Percent, tl.Time] },
+    { name: 'flag', uName: 'создание флага', params: [tl.Flag] }
 ];
