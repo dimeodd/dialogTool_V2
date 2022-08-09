@@ -596,7 +596,7 @@ class InputFactory {
             if (input.value == 'none') input.value = '';
         }
         input.oninput = function () {
-            input.value = input.value.replace(/[^а-яА-Я\w ?!:]/gm, '')
+            input.value = input.value.replace(/"/gm, '')
             langData[name] = input.value;
         }
         input.onchange = function () {

@@ -100,17 +100,17 @@ function ExpotrToUE4() {
         questsUE4.push(item.data);
 
         txt_arr.forEach(txt => {
-            txt.a = txt.a.concat('\n', item.data.Title_TextKey.concat(',', item.text.title[txt.LANG]));
-            txt.a = txt.a.concat('\n', item.data.OnTake.TextKey.concat(',', item.text.description[txt.LANG]));
-            txt.a = txt.a.concat('\n', item.data.OnSkip.TextKey.concat(',', item.text.skip[txt.LANG]));
-            txt.a = txt.a.concat('\n', item.data.OnFail.TextKey.concat(',', item.text.fail[txt.LANG]));
+            txt.a = txt.a.concat('\n', item.data.Title_TextKey.concat(',', f(item.text.title[txt.LANG])));
+            txt.a = txt.a.concat('\n', item.data.OnTake.TextKey.concat(',', f(item.text.description[txt.LANG])));
+            txt.a = txt.a.concat('\n', item.data.OnSkip.TextKey.concat(',', f(item.text.skip[txt.LANG])));
+            txt.a = txt.a.concat('\n', item.data.OnFail.TextKey.concat(',', f(item.text.fail[txt.LANG])));
 
             for (let j = 0, jMax = item.data.OnComplete_arr.length; j < jMax; j++) {
                 txt.a = txt.a.concat('\n',
-                    item.data.OnComplete_arr[j].TextKey.concat(',', item.textCompl[j].compl[txt.LANG])
+                    item.data.OnComplete_arr[j].TextKey.concat(',', f(item.textCompl[j].compl[txt.LANG]))
                 );
                 txt.a = txt.a.concat('\n',
-                    item.data.OnComplete_arr[j].TextKey_Button.concat(',', item.textCompl[j].complBtn[txt.LANG])
+                    item.data.OnComplete_arr[j].TextKey_Button.concat(',', f(item.textCompl[j].complBtn[txt.LANG]))
                 );
             }
         });
@@ -119,4 +119,8 @@ function ExpotrToUE4() {
     download('quests.json', JSON.stringify(questsUE4), 'text/json');
     download('ru.txt', txt_arr[0].a, 'text/txt');
     download('en.txt', txt_arr[1].a, 'text/txt');
+
+    function f(text) {
+        return "\"" + text + "\""
+    }
 }
