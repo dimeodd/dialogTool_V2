@@ -596,7 +596,6 @@ class InputFactory {
             if (input.value == 'none') input.value = '';
         }
         input.oninput = function () {
-            input.value = input.value.replace(/"/gm, '')
             langData[name] = input.value;
         }
         input.onchange = function () {
