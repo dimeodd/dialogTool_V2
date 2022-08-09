@@ -76,7 +76,7 @@ class Workspace {
         this.owner.appendChild(ElementFactory.TextLabel('Штрафы:'));
         this.owner.appendChild(ElementFactory.TaskList(ws.data.OnFail.Reward, reward_list, 'tasks2'));
 
-        this.owner.appendChild(ElementFactory.HeaderLabel('Награда'));
+        this.owner.appendChild(ElementFactory.HeaderLabel('Кнопка завершения квеста'));
         this.owner.appendChild(ElementFactory.CompleteFields());
     }
 }

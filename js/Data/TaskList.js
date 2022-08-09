@@ -169,7 +169,7 @@ var task_list = [
 var reward_list = [
     { name: 'error', uName: 'Ошибка данных', params: [] },
 
-    { name: 'money', uName: 'денеги', params: [tl.MoneyHardType, tl.Count] },
+    { name: 'money', uName: 'деньги', params: [tl.MoneyHardType, tl.Count] },
     { name: 'loyality', uName: 'лояльность', params: [tl.QuestGiver, tl.CountExt] },
     { name: 'building', uName: 'постройка', params: [tl.BuildID] },
     { name: 'workman', uName: 'рабочий', params: [tl.WorkmanType, tl.Count] },
