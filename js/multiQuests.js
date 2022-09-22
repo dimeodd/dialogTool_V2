@@ -182,7 +182,7 @@ class multiQuests {
 class MqData {
     arr = [new QuestData()];
     index = 0;
-    fileVersion = 1;
+    fileVersion = 2;
 }
 
 class FileVersionController {
@@ -199,7 +199,7 @@ class FileVersionController {
         }
 
         if (mqData.fileVersion < currVersion) {
-            for (let i = mqData.fileVersion, iMax = max(currVersion, fixArr.length); i < iMax; i++) {
+            for (let i = mqData.fileVersion, iMax = Math.max(currVersion, fixArr.length); i < iMax; i++) {
                 fixArr[i](mqData);
             }
             alert("Файл обновлён до версии " + currVersion);
@@ -207,10 +207,20 @@ class FileVersionController {
     }
 
     static fixArr = [
-        FileVersionController.Fix0
+        FileVersionController.Fix0,
+        FileVersionController.Fix1
     ]
 
     static Fix0(mqData) {
         mqData.fileVersion = 1;
+    }
+    static Fix1(mqData) {
+        mqData.arr.forEach(quest => {
+            var arr = quest.data.Tasks_arr;
+            for (let i = 0, iMax = arr.length; i < iMax; i++) {
+                arr[i] = arr[i].replace('64,fish32', items_list[63]);
+            }
+        });
+        //TODO как нибуль автоматизировать это, чтобы название не тут менять, а только в списке
     }
 }
