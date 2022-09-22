@@ -96,7 +96,7 @@ class ElementFactory {
         return div;
     }
 
-    static TaskList(dataArr, theList, tName) {
+    static TaskList(dataArr, rd_taskList, tName) {
 
         if (!dataArr) {
             var div = document.createElement('div');
@@ -106,20 +106,20 @@ class ElementFactory {
         }
         var div = document.createElement('div');
         let dictSel = {};
-        for (let i = 0, iMax = theList.length; i < iMax; i++) {
-            dictSel[theList[i].name] = i + '. ' + theList[i].uName;
+        for (let i = 0, iMax = rd_taskList.length; i < iMax; i++) {
+            dictSel[rd_taskList[i].name] = i + '. ' + rd_taskList[i].uName;
         }
         // автозаполнение элементов
         var task_arr = dataArr;
         for (let i = 0; i < task_arr.length; i++) {
-            var taskElement = ElementFactory.createTask(i, dictSel, dataArr, theList, tName);
+            var taskElement = ElementFactory.createTask(i, dictSel, dataArr, rd_taskList, tName);
             div.appendChild(taskElement);
         }
 
         var addBtn = document.createElement('button');
         addBtn.innerText = 'Add';
         addBtn.onclick = function (event) {
-            task_arr.push(theList[1].name);
+            task_arr.push(rd_taskList[1].name);
             ws.Redraw();
         }
         div.appendChild(addBtn);
@@ -127,7 +127,7 @@ class ElementFactory {
 
         //==========================================
     }
-    static createTask(index, dict, dataArr, theList, tName) {
+    static createTask(index, dict, dataArr, rd_taskList, tName) {
 
         var div = document.createElement('div');
         div.id = index;
@@ -184,13 +184,13 @@ class ElementFactory {
 
         //Название задачи
         var DatalistValues = [];
-        theList.forEach(task => { DatalistValues.push(dict[task.name]); });
+        rd_taskList.forEach(task => { DatalistValues.push(dict[task.name]); });
 
         var input = InputFactory.Datalist1(DatalistValues, tName);
         li.appendChild(input);
         input.onchange = function (event) {
             var taskID = parseInt(input.value);
-            var task = theList[taskID];
+            var task = rd_taskList[taskID];
 
             if (taskID == 0 || task === undefined) input.classList.add('red');
             else if (taskID != 0 && input.classList.contains('red')) {
@@ -221,13 +221,13 @@ class ElementFactory {
 
         // автозаполнение элементов
         var taskMem = dataArr[index].split(' ');
-        if (!selectContain(theList, 'name', taskMem[0])) {
-            dataArr[index] = theList[0].name;
+        if (!selectContain(rd_taskList, 'name', taskMem[0])) { //проверка на существование квеста с таким названием, и замена на ошибку если такого нет
+            dataArr[index] = rd_taskList[0].name;
             taskMem = dataArr[index].split(' ');
         }
         input.value = dict[taskMem[0]];
         var taskID = parseInt(input.value);
-        var task = theList[parseInt(input.value)];
+        var task = rd_taskList[taskID];
 
         for (let i = 0, iMax = task.params.length; i < iMax; i++) {
             var paramert = task.params[i](onChange);
@@ -244,7 +244,7 @@ class ElementFactory {
         return div;
 
         function onChange(event) {
-            var taskName = theList[parseInt(input.value)].name;
+            var taskName = rd_taskList[taskID].name;
             var taskResult = [taskName];
 
             for (let i = 1, iMax = ul.children.length; i < iMax; i++) {

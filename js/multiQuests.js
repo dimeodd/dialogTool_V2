@@ -160,9 +160,11 @@ class multiQuests {
         }
     }
 
-    SetData(data) {
-        this.arr = data.arr;
-        this.index = data.index;
+    SetData(mqData) {
+        FileVersionController.CheckFile(mqData);
+        this.arr = mqData.arr;
+        this.index = mqData.index;
+        this.fileVersion = mqData.fileVersion;
 
         this.Redraw();
         ws.SetData(this.arr[this.index]);
@@ -180,4 +182,35 @@ class multiQuests {
 class MqData {
     arr = [new QuestData()];
     index = 0;
+    fileVersion = 1;
+}
+
+class FileVersionController {
+
+    //проверяет актуальность версии файла
+    static CheckFile(mqData) {
+        var currVersion = new MqData().fileVersion;
+        var fixArr = FileVersionController.fixArr;
+
+        //zero fix
+        if (!mqData.hasOwnProperty('fileVersion')) {
+            alert("Версия файла не обнаружена. Файл будет обновлён до версии 1");
+            fixArr[0](mqData);
+        }
+
+        if (mqData.fileVersion < currVersion) {
+            for (let i = mqData.fileVersion, iMax = max(currVersion, fixArr.length); i < iMax; i++) {
+                fixArr[i](mqData);
+            }
+            alert("Файл обновлён до версии " + currVersion);
+        }
+    }
+
+    static fixArr = [
+        FileVersionController.Fix0
+    ]
+
+    static Fix0(mqData) {
+        mqData.fileVersion = 1;
+    }
 }
